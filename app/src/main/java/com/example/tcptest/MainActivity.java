@@ -81,7 +81,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 try {
                     dos = new DataOutputStream(socket.getOutputStream());   // output에 보낼꺼 넣음
                     dis = new DataInputStream(socket.getInputStream());     // input에 받을꺼 넣어짐
-                    dos.writeUTF("안드로이드에서 서버로 연결요청");
+                    String search_word = String.valueOf(word_edit.getText()); //검색할 단어 입력 받기
+                    dos.writeUTF(search_word); //Python 서버로 문자열 보내기
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -89,15 +90,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 }
                 Log.w("버퍼","버퍼생성 잘됨");
 
-                // 서버에서 계속 받아옴 - 한번은 문자, 한번은 숫자를 읽음. 순서 맞춰줘야 함.
+                // Python 서버에서 받아옴
                 try {
                     String line = "";
-                    int line2;
+                    //String line2 = "";
                     while(true) {
                         line = (String)dis.readUTF();
-                        line2 = (int)dis.read();
+                        //line2 = (String)dis.readUTF();
                         Log.w("서버에서 받아온 값 ",""+line);
-                        Log.w("서버에서 받아온 값 ",""+line2);
+                        //Log.w("서버에서 받아온 값 ",""+line2);
                     }
                 }catch (Exception e){
 
