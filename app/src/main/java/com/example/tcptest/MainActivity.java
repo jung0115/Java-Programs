@@ -93,12 +93,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // Python 서버에서 받아옴
                 try {
                     String line = "";
-                    //String line2 = "";
+                    String[] words = new String[100];
+                    int count = 0;
                     while(true) {
-                        line = (String)dis.readUTF();
-                        //line2 = (String)dis.readUTF();
-                        Log.w("서버에서 받아온 값 ",""+line);
-                        //Log.w("서버에서 받아온 값 ",""+line2);
+                        if(count == 100){ //100개의 데이터를 전송 받으면 종료
+                            break;
+                        }
+                        line = (String)dis.readUTF(); //python server에서 전송한 값을 받아옴
+                        words[count] = line;
+                        count++;
                     }
                 }catch (Exception e){
 
