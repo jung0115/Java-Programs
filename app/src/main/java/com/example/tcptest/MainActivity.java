@@ -10,7 +10,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.ArrayAdapter;
+
+import java.util.ArrayList;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -23,9 +27,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Button connect_btn;                 // word 받아오는 버튼
 
     EditText word_edit;               // word 에디트
-    TextView show_text;             // 서버에서 온 거 보여주는 에디트
+    ListView show_text;             // 서버에서 온 거 보여주는 에디트
 
-    String[] words = new String[100]; // 연관어 저장할 배열
+    ArrayList<String> words = new ArrayList<String>(); // 빈 데이터 리스트 생성
+    ArrayAdapter<String> adapter;
+    //String[] words = new String[100]; // 연관어 저장할 배열
 
     // 소켓통신에 필요한것
     private String html = "";
@@ -49,7 +55,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         connect_btn.setOnClickListener(this);
 
         word_edit = (EditText)findViewById(R.id.word_edit);
-        show_text = (TextView)findViewById(R.id.show_text);
+        
+        // listview 생성 및 adapter 지정
+        show_text = (ListView)findViewById(R.id.show_text);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, words); // ArrayAdapter 생성
+        show_text.setAdapter(adapter);
+
+        //words.add("Test");
+        //adapter.notifyDataSetChanged();
+
+        //show_text.setText(words[0]);
     }
 
     @Override
@@ -82,8 +97,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Log.w("edit 넘어가야 할 값 : ","안드로이드에서 서버로 연결요청");
 
                 try {
-                    dos = new DataOutputStream(socket.getOutputStream());   // output에 보낼꺼 넣음
-                    dis = new DataInputStream(socket.getInputStream());     // input에 받을꺼 넣어짐
+                    dos = new DataOutputStream(socket.getOutputStream());   // output에 socket server로 보낼 거 넣음
+                    dis = new DataInputStream(socket.getInputStream());     // input에 socket server에서 받은 거 들어감
                     String search_word = String.valueOf(word_edit.getText()); //검색할 단어 입력 받기
                     dos.writeUTF(search_word); //Python 서버로 문자열 보내기
 
@@ -95,18 +110,20 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
                 // Python 서버에서 받아옴
                 try {
+                    String len = "";
                     String line = "";
 
                     int count = 0;
                     while(true) {
-                        if(count == 100){ //100개의 데이터를 전송 받으면 종료
+                        if (count == 50) { //50개의 데이터를 전송 받으면 종료
                             break;
                         }
+                        len = (String)dis.readUTF();
                         line = (String)dis.readUTF(); //python server에서 전송한 값을 받아옴
-                        words[count] = line;
+                        words.add(line);
+                        //Log.w("서버에서 받아온 값 ", ""+count+": "+words.get(count));
                         count++;
                     }
-                    show_text.setText(words[0]);
                 }catch (Exception e){
 
                 }
