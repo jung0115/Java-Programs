@@ -20,10 +20,13 @@ import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    Button connect_btn;                 // ip 받아오는 버튼
+    Button connect_btn;                 // word 받아오는 버튼
 
-    EditText word_edit;               // ip 에디트
-    TextView show_text;             // 서버에서온거 보여주는 에디트
+    EditText word_edit;               // word 에디트
+    TextView show_text;             // 서버에서 온 거 보여주는 에디트
+
+    String[] words = new String[100]; // 연관어 저장할 배열
+
     // 소켓통신에 필요한것
     private String html = "";
     private Handler mHandler;
@@ -33,7 +36,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DataOutputStream dos;
     private DataInputStream dis;
 
-    private String ip = "192.168.0.5";            // IP 번호
+    //private String ip = "192.168.0.5";            // 노트북 IP 번호
+    private String ip = "203.255.3.164";            // 연구실컴 IP 번호
     private int port = 9999;                          // port 번호
 
     @Override
@@ -46,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         word_edit = (EditText)findViewById(R.id.word_edit);
         show_text = (TextView)findViewById(R.id.show_text);
-
     }
 
     @Override
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 // Python 서버에서 받아옴
                 try {
                     String line = "";
-                    String[] words = new String[100];
+
                     int count = 0;
                     while(true) {
                         if(count == 100){ //100개의 데이터를 전송 받으면 종료
@@ -103,6 +106,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         words[count] = line;
                         count++;
                     }
+                    show_text.setText(words[0]);
                 }catch (Exception e){
 
                 }
