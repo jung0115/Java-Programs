@@ -2,7 +2,10 @@
 // 고령자 운동 서비스
 // https://www.data.go.kr/data/15005602/openapi.do
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.URL;
 
 import java.util.ArrayList;
@@ -21,6 +24,11 @@ public class SeniorExercise {
     	String result = "";
 		
     	try {
+			FileOutputStream output=new FileOutputStream("seniorExercise.txt",false);
+        	//true로 두면 이어서 쓰고 , false로 쓰면 새로 씀
+			OutputStreamWriter writer=new OutputStreamWriter(output,"UTF-8");
+        	BufferedWriter printSet = new BufferedWriter(writer);
+			printSet.write("<산업통상자원부_운동 서비스 표준정보>\n\n");
     		URL url = new URL("http://www.ibtk.kr/SeniorExercise/"+ key + "?model_query_pageable={enable:false} ");
 
     		BufferedReader bf;
@@ -62,9 +70,9 @@ public class SeniorExercise {
             }
 
 			// 내용 정리해서 출력
-			StringBuilder printSet = new StringBuilder();
+			//StringBuilder printSet = new StringBuilder();
 			for(int i = 0; i < content.size(); i++) {
-				printSet.append(i+1).append("번").append("\n"); // 번호
+				printSet.append(i+1 + "번").append("\n"); // 번호
 				printSet.append("메인 메뉴 제목: ").append(mainMenuTitle.get(i)).append("\n");
 				printSet.append(" > 서브 메뉴 제목: ").append(subMenuTitle.get(i)).append("\n");
 				printSet.append("1) 운동 방법").append("\n").append(exerciseMethod.get(i)).append("\n");

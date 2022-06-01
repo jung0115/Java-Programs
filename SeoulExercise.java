@@ -1,7 +1,10 @@
 // 서울올림픽기념국민체육진흥공단_국민체력100_운동처방_동영상정보
 // https://www.data.go.kr/data/15084814/fileData.do#layer-api-guide
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 import java.net.URL;
 
 import java.util.ArrayList;
@@ -21,6 +24,12 @@ public class SeoulExercise {
     	String result = "";
 
     	try {
+            FileOutputStream output=new FileOutputStream("seoulExercise.txt",false);
+        	//true로 두면 이어서 쓰고 , false로 쓰면 새로 씀
+			OutputStreamWriter writer=new OutputStreamWriter(output,"UTF-8");
+        	BufferedWriter printSet = new BufferedWriter(writer);
+			printSet.write("<서울올림픽기념국민체육진흥공단_국민체력100_운동처방_동영상정보>\n\n");
+
     		URL url = new URL("https://api.odcloud.kr/api/15084814/v1/uddi:3f8d6b98-0082-4792-92a8-90d40ecc4bce?page=1&perPage=" + limitPage +"&serviceKey=" + key );
 
     		BufferedReader bf;
@@ -53,9 +62,9 @@ public class SeoulExercise {
             }
 
 			// 내용 정리해서 출력
-			StringBuilder printSet = new StringBuilder();
+			//StringBuilder printSet = new StringBuilder();
 			for(int i = 0; i < content.size(); i++) {
-				printSet.append(i+1).append("번").append("\n"); // 번호
+				printSet.append(i+1 + "번").append("\n"); // 번호
                 printSet.append(firstCategory.get(i));
                 printSet.append(" > ").append(secondCategory.get(i));
                 printSet.append(" > ").append(lastCategory.get(i)).append("\n");
