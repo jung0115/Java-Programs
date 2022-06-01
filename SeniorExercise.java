@@ -29,7 +29,8 @@ public class SeniorExercise {
 			OutputStreamWriter writer=new OutputStreamWriter(output,"UTF-8");
         	BufferedWriter printSet = new BufferedWriter(writer);
 			printSet.write("<산업통상자원부_운동 서비스 표준정보>\n\n");
-    		URL url = new URL("http://www.ibtk.kr/SeniorExercise/"+ key + "?model_query_pageable={enable:false} ");
+
+    		URL url = new URL("http://www.ibtk.kr/SeniorExercise/"+ key + "?model_query_pageable={enable:false}");
 
     		BufferedReader bf;
 
