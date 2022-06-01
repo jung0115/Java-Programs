@@ -39,7 +39,7 @@ public class BodyList_api {
 			ArrayList<String> year = new ArrayList<String>(); // 년도
 			ArrayList<String> targetclsCd = new ArrayList<String>(); // 인체치수통계대상분류코드
 			ArrayList<String> detailregionCd = new ArrayList<String>(); // 인체치수통계세부부위코드
-			ArrayList<String> sex = new ArrayList<String>(); // 	성별(남성:M,여성:W)
+			ArrayList<String> sex = new ArrayList<String>(); // 성별(남성:M,여성:W)
 			ArrayList<String> agesCd = new ArrayList<String>(); // 인체치수통계연령대코드
 			ArrayList<String> samplesize = new ArrayList<String>(); // 표본크기(측정수)
 			ArrayList<String> average = new ArrayList<String>(); // 평균

@@ -21,7 +21,7 @@ public class SeniorExercise {
     	String result = "";
 		
     	try {
-    		URL url = new URL("http://www.ibtk.kr/SeniorExercise/"+ key);
+    		URL url = new URL("http://www.ibtk.kr/SeniorExercise/"+ key + "?model_query_pageable={enable:false} ");
 
     		BufferedReader bf;
 
@@ -32,8 +32,8 @@ public class SeniorExercise {
             //System.out.print(result);
 
             JSONParser jsonParser = new JSONParser();
-        	JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
-            JSONArray content = (JSONArray)jsonObject.get("content");
+        	//JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
+            JSONArray content = (JSONArray)jsonParser.parse(result);
 
 			ArrayList<String> mainMenuTitle = new ArrayList<String>(); // 메인 메뉴 제목
 			ArrayList<String> subMenuTitle = new ArrayList<String>(); // 서브 메뉴 제목

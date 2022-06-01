@@ -20,7 +20,7 @@ public class seniorGuideDetail {
     	String result = "";
 
     	try {
-    		URL url = new URL("http://www.ibtk.kr/seniorGuideDetail/"+ key);
+    		URL url = new URL("http://www.ibtk.kr/seniorGuideDetail/"+ key + "?model_query_pageable={enable:false}");
 
     		BufferedReader bf;
 
@@ -31,8 +31,8 @@ public class seniorGuideDetail {
             //System.out.print(result);
 
             JSONParser jsonParser = new JSONParser();
-        	JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
-            JSONArray content = (JSONArray)jsonObject.get("content");
+        	//JSONObject jsonObject = (JSONObject)jsonParser.parse(result);
+            JSONArray content = (JSONArray)jsonParser.parse(result);
             //System.out.print(content);
 
             
