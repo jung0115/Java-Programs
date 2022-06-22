@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private DataInputStream dis;
 
     //private String ip = "192.168.0.5";            // 노트북 IP 번호
-    private String ip = "203.255.3.164";            // 연구실컴 IP 번호
+    private String ip = "203.255.3.86";            // 연구실 wifi IP 번호
+    //private String ip = "203.255.3.164";            // 연구실컴 IP 번호
     private int port = 9999;                          // port 번호
 
     @Override
