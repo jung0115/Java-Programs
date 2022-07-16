@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+    /* orientation="vertical" : 요소?들이 정렬되는 방향을 수직으로 */
+
+    /* match_parent : 부모의 크기만큼, wrap_content: 텍스트 크기만큼 */
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#174161"
+        android:textSize="20sp"
+        android:text="안드로이드 앱"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#5E1555"
+        android:textSize="15sp"
+        android:text="Java"/>
+
+</LinearLayout>
