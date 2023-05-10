@@ -1,5 +1,5 @@
-# Test-Programs
-: 테스트용 프로그램 모음  
+# Java-Programs
+: Java 공부용 Mini Projects
   
 [1.AndroidStudioTestApp](https://github.com/jung0115/Test-Program/tree/main/1.AndroidStudioTestApp)  
 [2.JavaDBConectTest](https://github.com/jung0115/Test-Program/tree/main/2.JavaDBConectTest)  
